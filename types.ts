@@ -14,6 +14,7 @@ export interface Habit {
   archived: boolean;
   notes?: Record<string, string>; // dateKey -> note content
   icon?: string;
+  updatedAt?: string;
 }
 
 export interface JournalEntry {
