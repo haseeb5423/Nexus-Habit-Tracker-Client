@@ -1,4 +1,4 @@
-# 🌿 Nexus Habit Tracker
+# 🌿 Nexus Habit Tracker - Client
 
 A beautiful, modern habit tracking application built with React and TypeScript. Track your daily habits, visualize your progress, and build lasting positive routines with an elegant forest-themed interface.
 
