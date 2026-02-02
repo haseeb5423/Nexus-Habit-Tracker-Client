@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus Habit Tracker</title>
+    <script>
+      // Immediate theme application to prevent flicker
+      (function() {
+        try {
+          // Check local storage
+          const stored = localStorage.getItem('nexus_settings');
+          let theme = 'dark'; // Default fallback
+          
+          if (stored) {
+             try {
+                const parsed = JSON.parse(stored);
+                if (parsed.theme) theme = parsed.theme;
+             } catch (e) {
+                // If parse fails, stick to default
+             }
+          }
+          
+          // Apply theme immediately
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              hand: ['Patrick Hand', 'cursive'],
+            },
+            colors: {
+              forest: {
+                50: '#F1F8E9',
+                100: '#DCEDC8',
+                200: '#C8E6C9', // Dark Mode Secondary Text
+                300: '#A5D6A7', // Accent
+                400: '#8BC34A', // Secondary
+                500: '#66BB6A', // Primary
+                600: '#4CAF50',
+                700: '#2E7D32',
+                800: '#1B5E20',
+                900: '#121B12', // Deep Background
+              },
+              // Custom Dark Mode Surface
+              'forest-dark': {
+                bg: '#121B12', // Deep Muted Forest Green
+                surface: '#1E2C1E', // Slightly lighter surface
+                text: '#E8F5E9', // Soft Off-White
+                muted: '#C8E6C9', // Muted Green
+                border: '#2E7D32',
+              },
+              // Custom Light Mode Surface
+              'forest-light': {
+                bg: '#F7FFF7',
+                surface: '#FFFFFF',
+                text: '#1E1E1E',
+                muted: '#4F4F4F',
+                border: '#DCEDC8',
+              }
+            },
+            animation: {
+              'blob': 'blob 10s infinite',
+              'fade-in': 'fadeIn 0.4s ease-out',
+              'slide-up': 'slideUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
+              'slide-down': 'slideDown 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
+              'slide-in-right': 'slideInRight 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
+              'slide-in-up-drawer': 'slideInUpDrawer 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
+              'scale-in': 'scaleIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
+              'float': 'float 6s ease-in-out infinite',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'shimmer': 'shimmer 2.5s linear infinite',
+            },
+            keyframes: {
+              blob: {
+                '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                '100%': { transform: 'translate(0px, 0px) scale(1)' },
+              },
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              slideUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              slideDown: {
+                '0%': { opacity: '0', transform: 'translateY(-20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              slideInRight: {
+                '0%': { opacity: '0', transform: 'translateX(20px)' },
+                '100%': { opacity: '1', transform: 'translateX(0)' },
+              },
+              slideInUpDrawer: {
+                '0%': { transform: 'translateY(100%)' },
+                '100%': { transform: 'translateY(0)' },
+              },
+              scaleIn: {
+                '0%': { opacity: '0', transform: 'scale(0.95)' },
+                '100%': { opacity: '1', transform: 'scale(1)' },
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              },
+              shimmer: {
+                '0%': { backgroundPosition: '-1000px 0' },
+                '100%': { backgroundPosition: '1000px 0' }
+              }
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+      :root {
+        --bg-color: #F7FFF7;
+        --text-color: #1E1E1E;
+        --blob-1: #81C784; /* Green 300 */
+        --blob-2: #AED581; /* Light Green */
+        --blob-3: #66BB6A; /* Primary Green */
+        --blob-opacity: 0.4;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      html.dark {
+        --bg-color: #121B12; /* Deep Muted Forest Green */
+        --text-color: #E8F5E9;
+        /* Using lighter forest tones with low opacity for a calm glow against dark bg */
+        --blob-1: #2E7D32; /* Forest 700 */
+        --blob-2: #4CAF50; /* Forest 600 */
+        --blob-3: #66BB6A; /* Forest 500 (Primary) */
+        --blob-opacity: 0.15; 
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        overflow-x: hidden;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+      
+      /* Ambient Background */
+      .ambient-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        overflow: hidden;
+        background: var(--bg-color);
+        transition: background-color 0.3s ease;
+      }
+      
+      .blob-1 {
+        position: absolute;
+        top: -10%;
+        left: -10%;
+        width: 50vw;
+        height: 50vw;
+        background: var(--blob-1);
+        filter: blur(100px);
+        opacity: var(--blob-opacity);
+        border-radius: 50%;
+        animation: blob 20s infinite alternate;
+        transition: background 0.5s ease;
+      }
+      
+      .blob-2 {
+        position: absolute;
+        bottom: -10%;
+        right: -10%;
+        width: 60vw;
+        height: 60vw;
+        background: var(--blob-2);
+        filter: blur(120px);
+        opacity: var(--blob-opacity);
+        border-radius: 50%;
+        animation: blob 25s infinite alternate-reverse;
+        transition: background 0.5s ease;
+      }
+
+      .blob-3 {
+        position: absolute;
+        top: 40%;
+        left: 40%;
+        width: 40vw;
+        height: 40vw;
+        background: var(--blob-3);
+        filter: blur(90px);
+        opacity: var(--blob-opacity);
+        border-radius: 50%;
+        animation: blob 30s infinite linear;
+        transition: background 0.5s ease;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(102, 187, 106, 0.3); /* Green tint */
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(102, 187, 106, 0.5); 
+      }
+
+      /* Utility for Staggered Animation Delays */
+      .delay-100 { animation-delay: 100ms; }
+      .delay-200 { animation-delay: 200ms; }
+      .delay-300 { animation-delay: 300ms; }
+      .delay-400 { animation-delay: 400ms; }
+      .delay-500 { animation-delay: 500ms; }
+      .delay-700 { animation-delay: 700ms; }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "recharts": "https://aistudiocdn.com/recharts@^3.4.1",
+    "uuid": "https://aistudiocdn.com/uuid@^13.0.0",
+    "jspdf": "https://aistudiocdn.com/jspdf@^3.0.4",
+    "clsx": "https://aistudiocdn.com/clsx@^2.1.1",
+    "html2canvas": "https://aistudiocdn.com/html2canvas@^1.4.1",
+    "canvas-confetti": "https://cdn.skypack.dev/canvas-confetti",
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^6.28.0",
+    "@emailjs/browser": "https://aistudiocdn.com/@emailjs/browser@^4.4.1"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div class="ambient-bg">
+      <div class="blob-1"></div>
+      <div class="blob-2"></div>
+      <div class="blob-3"></div>
+    </div>
+    <div id="root" class="relative z-10 h-screen flex flex-col"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
