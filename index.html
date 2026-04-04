@@ -44,33 +44,33 @@
               hand: ['Patrick Hand', 'cursive'],
             },
             colors: {
-              forest: {
-                50: '#F1F8E9',
-                100: '#DCEDC8',
-                200: '#C8E6C9', // Dark Mode Secondary Text
-                300: '#A5D6A7', // Accent
-                400: '#8BC34A', // Secondary
-                500: '#66BB6A', // Primary
-                600: '#4CAF50',
-                700: '#2E7D32',
-                800: '#1B5E20',
-                900: '#121B12', // Deep Background
+              brand: {
+                50: '#F7FEE7',
+                100: '#ECFCCB',
+                200: '#D9F99D',
+                300: '#BEF264',
+                400: '#A3E635',
+                500: '#84CC16', // Primary "Parrot Yellow" (Lime)
+                600: '#65A30D',
+                700: '#4D7C0F',
+                800: '#3F6212',
+                900: '#365314',
               },
               // Custom Dark Mode Surface
-              'forest-dark': {
-                bg: '#121B12', // Deep Muted Forest Green
-                surface: '#1E2C1E', // Slightly lighter surface
-                text: '#E8F5E9', // Soft Off-White
-                muted: '#C8E6C9', // Muted Green
-                border: '#2E7D32',
+              'brand-dark': {
+                bg: '#000000', // Pure Black
+                surface: '#0A0A0A', // Ultra Dark Grey (near black)
+                text: '#F1F5F9', // Slate 100
+                muted: '#666666', 
+                border: '#1A1A1A',
               },
               // Custom Light Mode Surface
-              'forest-light': {
-                bg: '#F7FFF7',
+              'brand-light': {
+                bg: '#F8FAFC', // Slate 50
                 surface: '#FFFFFF',
-                text: '#1E1E1E',
-                muted: '#4F4F4F',
-                border: '#DCEDC8',
+                text: '#0F172A', // Slate 900
+                muted: '#64748B', // Slate 500
+                border: '#E2E8F0', // Slate 200
               }
             },
             animation: {
@@ -131,12 +131,12 @@
     </script>
     <style>
       :root {
-        --bg-color: #F7FFF7;
-        --text-color: #1E1E1E;
-        --blob-1: #81C784; /* Green 300 */
-        --blob-2: #AED581; /* Light Green */
-        --blob-3: #66BB6A; /* Primary Green */
-        --blob-opacity: 0.4;
+        --bg-color: #F8FAFC;
+        --text-color: #0F172A;
+        --blob-1: #ECFCCB;
+        --blob-2: #F7FEE7;
+        --blob-3: #D9F99D;
+        --blob-opacity: 0.5;
       }
 
       html {
@@ -144,13 +144,12 @@
       }
 
       html.dark {
-        --bg-color: #121B12; /* Deep Muted Forest Green */
-        --text-color: #E8F5E9;
-        /* Using lighter forest tones with low opacity for a calm glow against dark bg */
-        --blob-1: #2E7D32; /* Forest 700 */
-        --blob-2: #4CAF50; /* Forest 600 */
-        --blob-3: #66BB6A; /* Forest 500 (Primary) */
-        --blob-opacity: 0.15; 
+        --bg-color: #000000;
+        --text-color: #F1F5F9;
+        --blob-1: #0A0A0A;
+        --blob-2: #111111;
+        --blob-3: #050505;
+        --blob-opacity: 0.1; 
       }
 
       body {
@@ -225,11 +224,11 @@
         background: transparent; 
       }
       ::-webkit-scrollbar-thumb {
-        background: rgba(102, 187, 106, 0.3); /* Green tint */
+        background: rgba(132, 204, 22, 0.3); /* Lime tint */
         border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: rgba(102, 187, 106, 0.5); 
+        background: rgba(132, 204, 22, 0.5); 
       }
 
       /* Utility for Staggered Animation Delays */

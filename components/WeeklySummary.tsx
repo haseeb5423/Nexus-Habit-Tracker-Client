@@ -12,11 +12,11 @@ const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 const THEME_BG: Record<string, string> = {
-  pink: 'bg-pink-50',
-  purple: 'bg-purple-50',
-  blue: 'bg-blue-50',
-  green: 'bg-emerald-50',
-  orange: 'bg-orange-50',
+  pink: 'bg-rose-500',
+  purple: 'bg-brand-500',
+  blue: 'bg-blue-500',
+  green: 'bg-teal-500',
+  orange: 'bg-amber-500',
 };
 
 export const WeeklySummary: React.FC<WeeklySummaryProps> = ({ habits }) => {
@@ -112,8 +112,8 @@ export const WeeklySummary: React.FC<WeeklySummaryProps> = ({ habits }) => {
   return (
     <div className="w-full animate-slide-up delay-400 opacity-0 fill-mode-forwards">
       <div className="flex justify-between items-center mb-6">
-        <h3 className="text-lg font-bold text-forest-900 dark:text-white flex items-center gap-2">
-            <Calendar size={20} className="text-forest-500" /> Weekly Recap
+        <h3 className="text-lg font-bold text-brand-900 dark:text-white flex items-center gap-2">
+            <Calendar size={20} className="text-brand-500" /> Weekly Recap
         </h3>
         <div className="flex gap-2">
             <button 
@@ -144,8 +144,8 @@ export const WeeklySummary: React.FC<WeeklySummaryProps> = ({ habits }) => {
                 className={clsx(
                     "min-w-[240px] md:min-w-[260px] h-[180px] p-5 rounded-2xl border snap-center transition-all duration-300 relative overflow-hidden group hover:-translate-y-1 hover:shadow-xl",
                     day.isToday 
-                        ? "bg-gradient-to-br from-forest-800 to-forest-900 text-white border-forest-700 ring-1 ring-forest-500/30" 
-                        : "bg-white dark:bg-forest-dark-surface border-slate-200 dark:border-white/5"
+                        ? "bg-brand-600 dark:bg-brand-600 text-white border-brand-500 ring-1 ring-brand-400/30" 
+                        : "bg-white dark:bg-brand-dark-surface border-slate-200 dark:border-white/5"
                 )}
             >
                 {/* Background Decoration */}
@@ -160,7 +160,7 @@ export const WeeklySummary: React.FC<WeeklySummaryProps> = ({ habits }) => {
                     <div>
                         <p className={clsx(
                             "text-[10px] font-bold uppercase tracking-wider mb-0.5",
-                            day.isToday ? "text-forest-300" : "text-slate-400 dark:text-forest-dark-muted"
+                            day.isToday ? "text-brand-200" : "text-slate-400 dark:text-brand-dark-muted"
                         )}>
                             {day.dayName}
                         </p>
@@ -176,14 +176,14 @@ export const WeeklySummary: React.FC<WeeklySummaryProps> = ({ habits }) => {
                     <div className="relative w-10 h-10 flex items-center justify-center">
                         <svg className="w-full h-full -rotate-90" viewBox="0 0 36 36">
                             <path 
-                                className={day.isToday ? "text-forest-700" : "text-slate-100 dark:text-white/10"}
+                                className={day.isToday ? "text-brand-700" : "text-slate-100 dark:text-white/10"}
                                 d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                                 fill="none"
                                 stroke="currentColor"
                                 strokeWidth="3"
                             />
                             <path 
-                                className={day.isToday ? "text-forest-400" : "text-forest-500"}
+                                className={day.isToday ? "text-brand-200" : "text-brand-500"}
                                 strokeDasharray={`${day.rate}, 100`}
                                 d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                                 fill="none"
@@ -203,7 +203,7 @@ export const WeeklySummary: React.FC<WeeklySummaryProps> = ({ habits }) => {
                     
                     {/* State 1: Default Summary View (Visible by default, hidden on hover) */}
                     <div className="absolute inset-0 flex flex-col justify-end transition-all duration-300 ease-out opacity-100 translate-y-0 group-hover:opacity-0 group-hover:translate-y-2 pointer-events-none">
-                        <p className={clsx("text-xs font-medium mb-2", day.isToday ? "text-forest-200" : "text-slate-500 dark:text-forest-dark-muted")}>
+                        <p className={clsx("text-xs font-medium mb-2", day.isToday ? "text-brand-100" : "text-slate-500 dark:text-brand-dark-muted")}>
                             {day.completedHabits.length} / {day.totalCount} Completed
                         </p>
                         
@@ -231,7 +231,7 @@ export const WeeklySummary: React.FC<WeeklySummaryProps> = ({ habits }) => {
 
                     {/* State 2: Detailed List View (Hidden by default, visible on hover) */}
                     <div className="absolute inset-0 flex flex-col transition-all duration-300 ease-out opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0">
-                         <p className={clsx("text-[10px] font-bold uppercase tracking-wider mb-2 flex items-center gap-1", day.isToday ? "text-forest-300" : "text-slate-400")}>
+                         <p className={clsx("text-[10px] font-bold uppercase tracking-wider mb-2 flex items-center gap-1", day.isToday ? "text-brand-200" : "text-slate-400")}>
                             <CheckCircle2 size={10} /> Completed
                          </p>
                          <div className="overflow-y-auto scrollbar-thin scrollbar-thumb-current/20 pr-1 -mr-1 pb-1 flex-1">

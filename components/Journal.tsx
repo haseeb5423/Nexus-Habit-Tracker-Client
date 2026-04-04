@@ -11,7 +11,7 @@ interface JournalProps {
 }
 
 const MOODS = [
-    { id: 'happy', icon: Smile, color: 'text-emerald-600', label: 'Happy' },
+    { id: 'happy', icon: Smile, color: 'text-teal-600', label: 'Happy' },
     { id: 'excited', icon: Zap, color: 'text-amber-500', label: 'Excited' },
     { id: 'neutral', icon: Meh, color: 'text-blue-500', label: 'Neutral' },
     { id: 'tired', icon: Moon, color: 'text-indigo-400', label: 'Tired' },
@@ -35,19 +35,19 @@ const ICONS: Record<string, any> = {
 };
 
 const THEME_TEXT: Record<string, string> = {
-    pink: 'text-pink-600',
-    purple: 'text-purple-600',
+    pink: 'text-rose-600',
+    purple: 'text-brand-600',
     blue: 'text-blue-600',
-    green: 'text-emerald-600',
-    orange: 'text-orange-600',
+    green: 'text-teal-600',
+    orange: 'text-amber-600',
 };
 
 const THEME_BG_LIGHT: Record<string, string> = {
-    pink: 'bg-pink-50',
-    purple: 'bg-purple-50',
+    pink: 'bg-rose-50',
+    purple: 'bg-brand-50',
     blue: 'bg-blue-50',
-    green: 'bg-emerald-50',
-    orange: 'bg-orange-50',
+    green: 'bg-teal-50',
+    orange: 'bg-amber-50',
 };
 
 // 3D Transform Helpers
@@ -219,7 +219,7 @@ const Journal: React.FC<JournalProps> = ({ habits = [] }) => {
             
             {/* Ambient Lighting Background */}
             <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-forest-500/10 dark:bg-forest-900/20 blur-[100px] rounded-full"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-500/10 dark:bg-brand-900/20 blur-[100px] rounded-full"></div>
             </div>
 
             {/* THE BOOK CONTAINER */}
@@ -250,52 +250,50 @@ const Journal: React.FC<JournalProps> = ({ habits = [] }) => {
                 >
                     {/* FRONT COVER */}
                     <div 
-                        className="absolute inset-0 rounded-r-xl rounded-l-md overflow-hidden bg-forest-800 transition-colors duration-500"
+                        className="absolute inset-0 rounded-r-xl rounded-l-md overflow-hidden bg-[#0d0f0d] transition-colors duration-500"
                         style={{ 
                             ...backfaceHidden, 
                             transform: 'translateZ(1px)',
                             boxShadow: 'inset 4px 0 10px rgba(0,0,0,0.3), inset -2px 0 5px rgba(255,255,255,0.1)'
                         }}
                     >
-                        {/* Improved Texture (CSS Gradient instead of SVG Filter) */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-[#1a4031] to-[#0d221a] dark:from-[#0c140c] dark:to-black"></div>
+                        <div className="absolute inset-0 bg-[#1a2e24]"></div>
                         <div className="absolute inset-0 bg-[radial-gradient(#fff_1px,transparent_0)] [background-size:20px_20px] opacity-[0.03]"></div>
                         
-                        {/* Gradient Shine */}
-                        <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-white/10 pointer-events-none"></div>
+                        {/* Decorative Boarder */}
+                        <div className="absolute top-5 bottom-5 left-10 right-5 border border-brand-500/10 rounded-r-md rounded-l-sm"></div>
+                        <div className="absolute top-5 bottom-5 left-7 right-5 border-2 border-dashed border-slate-700/30 rounded-r-md rounded-l-sm"></div>
 
-                        {/* Decoration Lines */}
-                        <div className="absolute top-3 bottom-3 left-5 right-3 border border-white/10 rounded-r-lg rounded-l-sm"></div>
-                        <div className="absolute top-5 bottom-5 left-7 right-5 border-2 border-dashed border-[#c4a484]/30 rounded-r-md rounded-l-sm"></div>
-
-                        {/* Spine Detail */}
-                        <div className="absolute top-0 bottom-0 left-0 w-8 bg-gradient-to-r from-black/60 via-[#0a1812] to-transparent border-r border-black/20"></div>
+                        {/* Bold Parrot Spine Detail */}
+                        <div className="absolute top-0 bottom-0 left-0 w-8 bg-brand-500 shadow-[2px_0_10px_rgba(0,0,0,0.3)] z-20 flex items-center justify-center">
+                            <div className="rotate-90 whitespace-nowrap text-[8px] font-black tracking-[0.2em] text-black/40 uppercase">Nexus Habit Tracker</div>
+                        </div>
 
                         {/* Cover Content */}
-                        <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8 z-10">
-                            <div className="w-32 h-32 mb-8 rounded-full border-[3px] border-[#c5a059]/40 flex items-center justify-center bg-black/20 shadow-lg backdrop-blur-sm">
-                                <Book size={56} className="text-[#e0c38c]" strokeWidth={1.2} />
+                        <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8 pl-14 z-10">
+                            <div className="w-28 h-28 mb-8 rounded-full border border-brand-500/20 flex items-center justify-center bg-black/40 shadow-xl backdrop-blur-sm">
+                                <Book size={48} className="text-brand-500" strokeWidth={1.5} />
                             </div>
 
-                            <h1 className="text-5xl md:text-6xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-b from-[#fdfbf7] via-[#e0c38c] to-[#b38b4d] tracking-widest drop-shadow-sm">
+                            <h1 className="text-5xl md:text-6xl font-serif font-bold text-white tracking-widest drop-shadow-sm">
                                 NEXUS
                             </h1>
                             
-                            <h2 className="text-sm md:text-base font-serif text-[#c5a059] tracking-[0.6em] mt-3 font-medium uppercase opacity-90">
+                            <h2 className="text-sm md:text-base font-serif text-brand-500/80 tracking-[0.6em] mt-3 font-medium uppercase">
                                 Journal
                             </h2>
 
-                            <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#c5a059]/70 to-transparent my-8"></div>
+                            <div className="w-16 h-[1px] bg-brand-500/20 my-8"></div>
                             
-                            <p className="text-[#e0c38c]/70 font-sans text-[9px] uppercase tracking-[0.3em] font-semibold">
-                                Vol. I • Personal Growth
+                            <p className="text-white/20 font-sans text-[8px] uppercase tracking-[0.3em] font-bold">
+                                Digital Companion • Vol. I
                             </p>
                         </div>
                     </div>
 
                     {/* INNER LEFT PAGE (History) */}
                     <div 
-                        className="absolute inset-0 bg-[#f4f1ea] dark:bg-[#1a1c1a] rounded-l-xl rounded-r-md flex overflow-hidden shadow-inner border-r border-[#e0dcd5] dark:border-[#2a2a2a] transition-colors duration-500"
+                        className="absolute inset-0 bg-[#f4f1ea] dark:bg-black rounded-l-xl rounded-r-md flex overflow-hidden shadow-inner border-r border-[#e0dcd5] dark:border-[#2a2a2a] transition-colors duration-500"
                         style={{ 
                             ...backfaceHidden,
                             transform: 'rotateY(180deg) translateZ(1px)' 
@@ -303,7 +301,7 @@ const Journal: React.FC<JournalProps> = ({ habits = [] }) => {
                         onClick={(e) => e.stopPropagation()}
                     >
                          {/* Simple Paper Texture (CSS) */}
-                         <div className="absolute inset-0 bg-[#f4f1ea] dark:bg-[#1a1c1a]"></div>
+                         <div className="absolute inset-0 bg-[#f4f1ea] dark:bg-black"></div>
                          <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#000_1px,transparent_0)] [background-size:16px_16px]"></div>
                          <div className="absolute inset-0 bg-gradient-to-r from-black/10 to-transparent w-8 pointer-events-none"></div>
 
@@ -312,7 +310,7 @@ const Journal: React.FC<JournalProps> = ({ habits = [] }) => {
                                  <h3 className="font-serif text-2xl text-[#5d4037] dark:text-[#e0e0e0] font-bold flex items-center gap-2">
                                     <CalendarIcon size={20} /> History
                                  </h3>
-                                 <button onClick={() => setIsOpen(false)} className="text-[#8d6e63] dark:text-forest-400 hover:text-[#5d4037] dark:hover:text-forest-300 text-xs uppercase tracking-wider font-bold hover:underline">Close</button>
+                                 <button onClick={() => setIsOpen(false)} className="text-[#8d6e63] dark:text-brand-400 hover:text-[#5d4037] dark:hover:text-brand-300 text-xs uppercase tracking-wider font-bold hover:underline">Close</button>
                              </div>
 
                              <div className="relative mb-4">
@@ -321,7 +319,7 @@ const Journal: React.FC<JournalProps> = ({ habits = [] }) => {
                                     placeholder="Search entries..." 
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
-                                    className="w-full bg-[#ebe7df] dark:bg-white/5 border border-[#d7ccc8] dark:border-white/10 rounded-lg py-2 pl-9 pr-4 text-sm font-serif text-[#5d4037] dark:text-[#d7ccc8] placeholder-[#a1887f] dark:placeholder-white/20 focus:outline-none focus:ring-1 focus:ring-[#8d6e63] dark:focus:ring-forest-500 transition-all"
+                                    className="w-full bg-[#ebe7df] dark:bg-white/5 border border-[#d7ccc8] dark:border-white/10 rounded-lg py-2 pl-9 pr-4 text-sm font-serif text-[#5d4037] dark:text-[#d7ccc8] placeholder-[#a1887f] dark:placeholder-white/20 focus:outline-none focus:ring-1 focus:ring-[#8d6e63] dark:focus:ring-brand-500 transition-all"
                                 />
                                 <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#a1887f] dark:text-white/30" />
                                 {searchQuery && (
@@ -350,7 +348,7 @@ const Journal: React.FC<JournalProps> = ({ habits = [] }) => {
                                                         : "border-transparent hover:bg-black/5 dark:hover:bg-white/5 text-[#8d6e63] dark:text-[#a1887f]"
                                                 )}
                                             >
-                                                {isSelected && <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#8d6e63] dark:bg-forest-500"></div>}
+                                                {isSelected && <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#8d6e63] dark:bg-brand-500"></div>}
                                                 <div className="flex flex-col min-w-0">
                                                     <span className={clsx("font-serif text-lg leading-none truncate", isSelected ? "text-[#3e2723] dark:text-white font-bold" : "")}>
                                                         {formatDate(date)}
@@ -382,7 +380,7 @@ const Journal: React.FC<JournalProps> = ({ habits = [] }) => {
                     >
                          {/* Front Face */}
                          <div 
-                             className="absolute inset-0 bg-[#f4f1ea] dark:bg-[#1a1c1a] rounded-r-xl rounded-l-md overflow-hidden shadow-md"
+                             className="absolute inset-0 bg-[#f4f1ea] dark:bg-black rounded-r-xl rounded-l-md overflow-hidden shadow-md"
                              style={{ ...backfaceHidden, transform: 'rotateY(0deg)' }}
                          >
                             <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#000_1px,transparent_0)] [background-size:16px_16px]"></div>
@@ -392,7 +390,7 @@ const Journal: React.FC<JournalProps> = ({ habits = [] }) => {
 
                          {/* Back Face */}
                          <div 
-                             className="absolute inset-0 bg-[#f4f1ea] dark:bg-[#1a1c1a] rounded-l-xl rounded-r-md overflow-hidden shadow-md"
+                             className="absolute inset-0 bg-[#f4f1ea] dark:bg-black rounded-l-xl rounded-r-md overflow-hidden shadow-md"
                              style={{ ...backfaceHidden, transform: 'rotateY(180deg)' }}
                          >
                             <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#000_1px,transparent_0)] [background-size:16px_16px]"></div>
@@ -403,7 +401,7 @@ const Journal: React.FC<JournalProps> = ({ habits = [] }) => {
 
                 {/* --- STATIC PART: RIGHT PAGE (Editor) --- */}
                 <div 
-                    className="absolute inset-0 bg-[#f4f1ea] dark:bg-[#1a1c1a] rounded-r-xl rounded-l-md z-10 flex shadow-xl overflow-hidden transition-colors duration-500"
+                    className="absolute inset-0 bg-[#f4f1ea] dark:bg-black rounded-r-xl rounded-l-md z-10 flex shadow-xl overflow-hidden transition-colors duration-500"
                     onClick={(e) => e.stopPropagation()}
                 >
                      {/* Paper Texture */}
@@ -411,9 +409,9 @@ const Journal: React.FC<JournalProps> = ({ habits = [] }) => {
                      <div className="absolute top-0 left-0 w-16 h-full bg-gradient-to-r from-black/15 via-black/5 to-transparent pointer-events-none z-20 mix-blend-multiply"></div>
 
                      {/* Ribbon */}
-                     <div className="absolute top-0 right-6 md:right-8 w-8 h-32 bg-red-700 shadow-md z-30 transition-transform duration-500 hover:translate-y-2 cursor-grab group">
-                         <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent opacity-30"></div>
-                        <div className="absolute bottom-0 left-0 border-l-[16px] border-r-[16px] border-b-[12px] border-l-red-700 border-r-red-700 border-b-transparent transform translate-y-full"></div>
+                     <div className="absolute top-0 right-6 md:right-8 w-8 h-32 bg-brand-700 shadow-md z-30 transition-transform duration-500 hover:translate-y-2 cursor-grab group">
+                         <div className="absolute inset-0 bg-black/20 opacity-30"></div>
+                        <div className="absolute bottom-0 left-0 border-l-[16px] border-r-[16px] border-b-[12px] border-l-brand-700 border-r-brand-700 border-b-transparent transform translate-y-full"></div>
                      </div>
 
                      <div className="flex-1 p-6 md:p-10 md:pl-16 flex flex-col relative z-10 h-full">
@@ -482,7 +480,7 @@ const Journal: React.FC<JournalProps> = ({ habits = [] }) => {
                                  {/* --- SYNCED HABIT NOTES SECTION --- */}
                                  {habitNotes.length > 0 && (
                                      <div className="mt-8 pt-4 border-t-2 border-dashed border-[#d7ccc8] dark:border-white/10 relative">
-                                        <div className="absolute -top-3 left-10 bg-[#f4f1ea] dark:bg-[#1a1c1a] px-2 text-xs font-bold text-[#8d6e63] dark:text-forest-dark-muted uppercase tracking-wider flex items-center gap-1">
+                                        <div className="absolute -top-3 left-10 bg-[#f4f1ea] dark:bg-black px-2 text-xs font-bold text-[#8d6e63] dark:text-brand-dark-muted uppercase tracking-wider flex items-center gap-1">
                                             <StickyNote size={12} /> Habit Logs
                                         </div>
                                         <div className="space-y-4 pl-8">
@@ -538,9 +536,9 @@ const Journal: React.FC<JournalProps> = ({ habits = [] }) => {
                 </div>
 
                 {/* 3D Page Thickness Effect */}
-                <div className="absolute top-1 right-1 bottom-1 w-4 bg-[#e6e2d8] dark:bg-[#2a2a2a] rounded-r-md -z-10 shadow border-r border-[#d4cfc5] dark:border-black" style={{ transform: 'translateX(4px) translateZ(-2px)' }}></div>
-                <div className="absolute top-2 right-2 bottom-2 w-4 bg-[#e6e2d8] dark:bg-[#2a2a2a] rounded-r-md -z-20 shadow border-r border-[#d4cfc5] dark:border-black" style={{ transform: 'translateX(8px) translateZ(-4px)' }}></div>
-                <div className="absolute top-3 right-3 bottom-3 w-4 bg-forest-900 dark:bg-[#050a05] rounded-r-md -z-30 shadow-2xl" style={{ transform: 'translateX(12px) translateZ(-6px)' }}></div>
+                <div className="absolute top-1 right-1 bottom-1 w-4 bg-[#e6e2d8] dark:bg-[#111111] rounded-r-md -z-10 shadow border-r border-[#d4cfc5] dark:border-black" style={{ transform: 'translateX(4px) translateZ(-2px)' }}></div>
+                <div className="absolute top-2 right-2 bottom-2 w-4 bg-[#e6e2d8] dark:bg-[#111111] rounded-r-md -z-20 shadow border-r border-[#d4cfc5] dark:border-black" style={{ transform: 'translateX(8px) translateZ(-4px)' }}></div>
+                <div className="absolute top-3 right-3 bottom-3 w-4 bg-slate-800 dark:bg-black rounded-r-md -z-30 shadow-2xl" style={{ transform: 'translateX(12px) translateZ(-6px)' }}></div>
 
             </div>
 

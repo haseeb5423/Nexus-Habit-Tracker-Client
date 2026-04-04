@@ -182,7 +182,7 @@ const App: React.FC = () => {
   }, []);
 
   const handleSyncFromLogin = (data: any) => { if (data.habits) { setHabits(data.habits); saveHabits(data.habits); } if (data.settings) { setSettings(prev => ({ ...prev, ...data.settings })); saveSettings({ ...settings, ...data.settings }); } if (data.journal) saveJournal(data.journal); setIsLoggedIn(true); };
-  const handleLogout = () => { api.logout(); setIsLoggedIn(false); navigate('/'); };
+  const handleLogout = () => { api.logout(); resetData(); navigate('/'); };
 
   const renderContent = () => {
     switch (currentRoute) {

@@ -79,7 +79,7 @@ const FlowSpace: React.FC<FlowSpaceProps> = ({ habits, onCompleteHabit, onNaviga
         setIsActive(false);
         if (selectedHabitId) {
             onCompleteHabit(selectedHabitId, today, 'add');
-            confetti({ particleCount: 200, spread: 90, origin: { y: 0.5 }, colors: ['#8BC34A', '#66BB6A', '#FFFFFF'] });
+            confetti({ particleCount: 200, spread: 90, origin: { y: 0.5 }, colors: ['#84cc16', '#facc15', '#ffffff'] });
         }
         vibrate([100, 50, 100, 50, 150]);
         setTimeLeft(duration);
@@ -104,7 +104,7 @@ const FlowSpace: React.FC<FlowSpaceProps> = ({ habits, onCompleteHabit, onNaviga
     const activeSegments = Math.floor(progress * segments);
 
     return (
-        <div className="flex-1 flex flex-col bg-white dark:bg-forest-dark-bg transition-colors duration-500 overflow-hidden relative">
+        <div className="flex-1 flex flex-col bg-white dark:bg-black transition-colors duration-500 overflow-hidden relative">
             {/* Header */}
             <div className="px-6 py-4 flex items-center justify-between z-10">
                 <button 
@@ -125,7 +125,7 @@ const FlowSpace: React.FC<FlowSpaceProps> = ({ habits, onCompleteHabit, onNaviga
                     {/* Segmented Timer Ring */}
                     <div className="relative w-full aspect-square max-w-[340px] flex items-center justify-center my-8">
                         {/* Outer Glow / Background Ring */}
-                        <div className="absolute inset-0 rounded-full bg-forest-50 dark:bg-forest-900/10 blur-3xl opacity-50"></div>
+                        <div className="absolute inset-0 rounded-full bg-brand-50 dark:bg-brand-900/10 blur-3xl opacity-50"></div>
                         
                         {/* Segmented Progress SVG */}
                         <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full transform -rotate-90">
@@ -143,9 +143,9 @@ const FlowSpace: React.FC<FlowSpaceProps> = ({ habits, onCompleteHabit, onNaviga
                                         className={clsx(
                                             "transition-all duration-700",
                                             isActiveSegment 
-                                                ? "stroke-forest-400 dark:stroke-forest-500" 
+                                                ? "stroke-brand-400 dark:stroke-brand-500" 
                                                 : isCurrentSegment && isActive
-                                                    ? "stroke-forest-300 animate-pulse" 
+                                                    ? "stroke-brand-300 animate-pulse" 
                                                     : "stroke-slate-100 dark:stroke-white/10"
                                         )}
                                         strokeWidth="3.5"
@@ -160,7 +160,7 @@ const FlowSpace: React.FC<FlowSpaceProps> = ({ habits, onCompleteHabit, onNaviga
                             <span className="text-7xl font-black text-slate-900 dark:text-white tracking-tighter tabular-nums">
                                 {formatTime(timeLeft)}
                             </span>
-                            <p className="text-slate-400 dark:text-forest-dark-muted font-medium text-sm mt-1 uppercase tracking-widest">
+                            <p className="text-slate-400 dark:text-brand-dark-muted font-medium text-sm mt-1 uppercase tracking-widest">
                                 {isActive ? (
                                     breathState === 'inhale' ? 'Inhaling...' : 
                                     breathState === 'hold' ? 'Holding...' : 
@@ -177,10 +177,10 @@ const FlowSpace: React.FC<FlowSpaceProps> = ({ habits, onCompleteHabit, onNaviga
                         <button 
                             onClick={toggleActive}
                             className={clsx(
-                                "flex-1 py-4 px-6 rounded-3xl font-black text-lg transition-all active:scale-95 shadow-xl shadow-forest-500/20",
+                                "flex-1 py-4 px-6 rounded-3xl font-black text-lg transition-all active:scale-95 shadow-xl shadow-brand-500/10",
                                 isActive 
-                                    ? "bg-white dark:bg-forest-dark-surface text-forest-600 border-2 border-forest-500/30" 
-                                    : "bg-forest-400 text-white hover:bg-forest-500"
+                                    ? "bg-white dark:bg-brand-dark-surface text-brand-600 border-2 border-brand-500/30" 
+                                    : "bg-brand-600 text-white hover:bg-brand-700"
                             )}
                         >
                             {isActive ? 'Pause Flow' : 'Start Focus'}
@@ -196,7 +196,7 @@ const FlowSpace: React.FC<FlowSpaceProps> = ({ habits, onCompleteHabit, onNaviga
                     <div className="w-full mt-12 space-y-6">
                         <div className="flex items-center justify-between">
                             <h3 className="text-xl font-black text-slate-900 dark:text-white">Current Focus</h3>
-                            <button className="text-sm font-bold text-slate-400 hover:text-forest-500">View All</button>
+                            <button className="text-sm font-bold text-slate-400 hover:text-brand-500">View All</button>
                         </div>
 
                         {/* Habit Cards List */}
@@ -208,31 +208,31 @@ const FlowSpace: React.FC<FlowSpaceProps> = ({ habits, onCompleteHabit, onNaviga
                                     className={clsx(
                                         "w-full p-5 rounded-3xl border text-left transition-all flex items-start gap-4 group",
                                         selectedHabitId === h.id 
-                                            ? "bg-slate-50/50 dark:bg-forest-900/10 border-forest-200 dark:border-forest-500/30" 
-                                            : "bg-white dark:bg-forest-dark-surface border-slate-100 dark:border-white/5 hover:border-slate-200"
+                                            ? "bg-slate-50/50 dark:bg-brand-900/10 border-brand-200 dark:border-brand-500/30" 
+                                            : "bg-white dark:bg-brand-dark-surface border-slate-100 dark:border-white/5 hover:border-slate-200"
                                     )}
                                 >
                                     <div className={clsx(
                                         "p-3 rounded-2xl transition-colors shrink-0",
-                                        selectedHabitId === h.id ? "bg-forest-100 dark:bg-forest-500/20" : "bg-slate-100 dark:bg-white/5"
+                                        selectedHabitId === h.id ? "bg-brand-100 dark:bg-brand-500/20" : "bg-slate-100 dark:bg-white/5"
                                     )}>
-                                        <Brain size={24} className={clsx(selectedHabitId === h.id ? "text-forest-600 dark:text-forest-400" : "text-slate-400")} />
+                                        <Brain size={24} className={clsx(selectedHabitId === h.id ? "text-brand-600 dark:text-brand-400" : "text-slate-400")} />
                                     </div>
                                     <div className="flex-1 min-w-0">
                                         <div className="flex items-center justify-between mb-1">
                                             <h4 className="font-bold text-slate-800 dark:text-white truncate">{h.title}</h4>
-                                            {selectedHabitId === h.id && <div className="w-5 h-5 rounded-full bg-forest-500 flex items-center justify-center shadow-lg"><Check size={12} className="text-white" /></div>}
+                                            {selectedHabitId === h.id && <div className="w-5 h-5 rounded-full bg-brand-500 flex items-center justify-center shadow-lg"><Check size={12} className="text-white" /></div>}
                                         </div>
-                                        <p className="text-xs text-slate-400 dark:text-forest-dark-muted leading-relaxed line-clamp-2">
+                                        <p className="text-xs text-slate-400 dark:text-brand-dark-muted leading-relaxed line-clamp-2">
                                             {h.description || 'Targeted focus session to align with your personal growth goals.'}
                                         </p>
                                     </div>
                                 </button>
                             )) : (
                                 <div className="p-8 text-center bg-slate-50 dark:bg-white/5 rounded-3xl border border-dashed border-slate-200 dark:border-white/10">
-                                    <Sparkles size={32} className="mx-auto text-forest-300 mb-3" />
-                                    <p className="text-slate-500 dark:text-forest-dark-muted font-bold">No active habits today</p>
-                                    <button onClick={() => onNavigate('/habits')} className="text-forest-500 text-xs mt-2 hover:underline">Go to My Habits</button>
+                                    <Sparkles size={32} className="mx-auto text-brand-300 mb-3" />
+                                    <p className="text-slate-500 dark:text-brand-dark-muted font-bold">No active habits today</p>
+                                    <button onClick={() => onNavigate('/habits')} className="text-brand-500 text-xs mt-2 hover:underline">Go to My Habits</button>
                                 </div>
                             )}
                         </div>
@@ -247,7 +247,7 @@ const FlowSpace: React.FC<FlowSpaceProps> = ({ habits, onCompleteHabit, onNaviga
                     <button className="p-4 rounded-full text-slate-500 hover:text-white transition-colors"><Clock size={20} /></button>
                     <button 
                         onClick={() => onNavigate('/habits')}
-                        className="w-14 h-14 rounded-full bg-forest-400 text-white flex items-center justify-center shadow-lg shadow-forest-500/40 hover:scale-105 active:scale-95 transition-all"
+                        className="w-14 h-14 rounded-full bg-brand-600 text-white flex items-center justify-center shadow-lg shadow-brand-500/40 hover:scale-105 active:scale-95 transition-all"
                     >
                         <Plus size={24} />
                     </button>

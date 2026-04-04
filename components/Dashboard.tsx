@@ -41,7 +41,7 @@ const DashboardCard: React.FC<DashboardCardProps> = ({ children, className, dela
         "active:scale-95 transition-transform",
         className
       )}>
-        <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent opacity-0 group-hover:opacity-30 transition-opacity duration-500 rounded-2xl pointer-events-none" />
+        <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl pointer-events-none" />
         {children}
       </div>
     </div>
@@ -93,55 +93,55 @@ const Dashboard: React.FC<DashboardProps> = ({ habits, onNavigate }) => {
     <div className="space-y-6 md:space-y-10 pb-10">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
         <DashboardCard 
-          className="bg-white/80 dark:bg-forest-dark-surface border-forest-200 dark:border-forest-800 border-b-forest-500 dark:border-b-forest-600" 
+          className="bg-white/80 dark:bg-brand-dark-surface border-brand-200 dark:border-brand-800 border-b-brand-500 dark:border-b-brand-600" 
           delay="delay-100"
           onClick={() => onNavigate('/habits')}
         >
             <div className="flex justify-between items-start mb-4 relative z-10">
               <div>
-                <p className="text-forest-light-muted dark:text-forest-dark-muted text-xs md:text-sm font-bold tracking-wide uppercase">Daily Progress</p>
-                <h3 className="text-3xl md:text-4xl font-black text-forest-800 dark:text-white mt-1 drop-shadow-sm">
+                <p className="text-brand-light-muted dark:text-brand-dark-muted text-xs md:text-sm font-bold tracking-wide uppercase">Daily Progress</p>
+                <h3 className="text-3xl md:text-4xl font-black text-brand-800 dark:text-white mt-1 drop-shadow-sm">
                     <Counter value={completionRate} />%
                 </h3>
               </div>
-              <div className="p-2 md:p-3 bg-forest-100 dark:bg-forest-500/20 rounded-xl text-forest-600 dark:text-forest-300 shadow-inner animate-pulse-slow"><CheckCircle className="w-5 h-5 md:w-7 md:h-7" /></div>
+              <div className="p-2 md:p-3 bg-brand-100 dark:bg-brand-500/20 rounded-xl text-brand-600 dark:text-brand-300 shadow-inner"><CheckCircle className="w-5 h-5 md:w-7 md:h-7" /></div>
             </div>
             <div className="w-full bg-slate-200 dark:bg-black h-2.5 md:h-3 rounded-full mt-2 md:mt-4 overflow-hidden border border-slate-100 dark:border-white/10 relative z-10">
-              <div className="h-full bg-gradient-to-r from-forest-500 to-forest-300 shadow-[0_0_15px_rgba(76,175,80,0.5)] rounded-full transition-all duration-1000 ease-out" style={{ width: `${completionRate}%` }}></div>
+              <div className="h-full bg-brand-500 shadow-[0_0_15px_rgba(99,102,241,0.5)] rounded-full transition-all duration-1000 ease-out" style={{ width: `${completionRate}%` }}></div>
             </div>
-            <p className="text-xs md:text-sm text-forest-light-muted dark:text-forest-dark-muted mt-3 font-medium relative z-10">{completedToday} / {totalDue} due today</p>
+            <p className="text-xs md:text-sm text-brand-light-muted dark:text-brand-dark-muted mt-3 font-medium relative z-10">{completedToday} / {totalDue} due today</p>
         </DashboardCard>
 
         <DashboardCard 
-          className="bg-white/80 dark:bg-forest-dark-surface border-orange-200 dark:border-orange-900/50 border-b-orange-500 dark:border-b-orange-600" 
+          className="bg-white/80 dark:bg-brand-dark-surface border-orange-200 dark:border-orange-900/50 border-b-orange-500 dark:border-b-orange-600" 
           delay="delay-200"
           onClick={() => onNavigate('/analytics')}
         >
             <div className="flex justify-between items-start mb-4 relative z-10">
               <div>
-                <p className="text-forest-light-muted dark:text-forest-dark-muted text-xs md:text-sm font-bold tracking-wide uppercase">Best Streak</p>
-                <h3 className="text-3xl md:text-4xl font-black text-forest-800 dark:text-white mt-1 drop-shadow-sm">
-                    <Counter value={bestStreakData.longest} /> <span className="text-lg md:text-xl font-medium text-forest-light-muted dark:text-forest-dark-muted">{bestStreakData.unit}</span>
+                <p className="text-brand-light-muted dark:text-brand-dark-muted text-xs md:text-sm font-bold tracking-wide uppercase">Best Streak</p>
+                <h3 className="text-3xl md:text-4xl font-black text-brand-800 dark:text-white mt-1 drop-shadow-sm">
+                    <Counter value={bestStreakData.longest} /> <span className="text-lg md:text-xl font-medium text-brand-light-muted dark:text-brand-dark-muted">{bestStreakData.unit}</span>
                 </h3>
               </div>
               <div className="p-2 md:p-3 bg-orange-100 dark:bg-orange-900/30 rounded-xl text-orange-600 dark:text-orange-300 shadow-inner animate-float"><Activity className="w-5 h-5 md:w-7 md:h-7" /></div>
             </div>
-            <div className="mt-2 md:mt-4 text-xs md:text-sm text-forest-light-muted dark:text-forest-dark-muted font-medium flex items-center gap-2 relative z-10"><TrendingUp size={16} /> Keep growing!</div>
+            <div className="mt-2 md:mt-4 text-xs md:text-sm text-brand-light-muted dark:text-brand-dark-muted font-medium flex items-center gap-2 relative z-10"><TrendingUp size={16} /> Keep growing!</div>
         </DashboardCard>
 
         <DashboardCard 
-          className="bg-white/80 dark:bg-forest-dark-surface border-blue-200 dark:border-blue-900/50 border-b-blue-500 dark:border-b-blue-600" 
+          className="bg-white/80 dark:bg-brand-dark-surface border-blue-200 dark:border-blue-900/50 border-b-blue-500 dark:border-b-blue-600" 
           delay="delay-300"
           onClick={() => onNavigate('/habits')}
         >
              <div className="flex justify-between items-start mb-4 relative z-10">
                <div>
-                 <p className="text-forest-light-muted dark:text-forest-dark-muted text-xs md:text-sm font-bold tracking-wide uppercase">Active Habits</p>
-                 <h3 className="text-3xl md:text-4xl font-black text-forest-800 dark:text-white mt-1 drop-shadow-sm"><Counter value={habits.length} /></h3>
+                 <p className="text-brand-light-muted dark:text-brand-dark-muted text-xs md:text-sm font-bold tracking-wide uppercase">Active Habits</p>
+                 <h3 className="text-3xl md:text-4xl font-black text-brand-800 dark:text-white mt-1 drop-shadow-sm"><Counter value={habits.length} /></h3>
                </div>
                <div className="p-2 md:p-3 bg-blue-100 dark:bg-blue-900/30 rounded-xl text-blue-600 dark:text-blue-300 shadow-inner"><Trophy className="w-5 h-5 md:w-7 md:h-7" /></div>
              </div>
-             <div className="mt-2 md:mt-4 text-xs md:text-sm text-forest-light-muted dark:text-forest-dark-muted font-medium relative z-10">Focus on quality over quantity.</div>
+             <div className="mt-2 md:mt-4 text-xs md:text-sm text-brand-light-muted dark:text-brand-dark-muted font-medium relative z-10">Focus on quality over quantity.</div>
         </DashboardCard>
       </div>
 

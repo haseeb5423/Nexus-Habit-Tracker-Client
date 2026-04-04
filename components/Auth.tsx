@@ -46,12 +46,12 @@ const Auth: React.FC<AuthProps> = ({ onLoginSuccess }) => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] p-4 animate-fade-in">
-        <div className="w-full max-w-md bg-white dark:bg-forest-dark-surface p-8 rounded-2xl shadow-2xl border border-slate-200 dark:border-white/10">
+        <div className="w-full max-w-md bg-white dark:bg-brand-dark-surface p-8 rounded-2xl shadow-2xl border border-slate-200 dark:border-white/10">
             <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold text-forest-900 dark:text-white tracking-tight">
+                <h2 className="text-3xl font-bold text-brand-900 dark:text-white tracking-tight">
                     {isLogin ? 'Welcome Back' : 'Join Nexus'}
                 </h2>
-                <p className="text-forest-light-muted dark:text-forest-dark-muted mt-2">
+                <p className="text-slate-500 dark:text-brand-dark-muted mt-2">
                     {isLogin ? 'Sign in to sync your progress' : 'Start your journey to better habits'}
                 </p>
             </div>
@@ -72,7 +72,7 @@ const Auth: React.FC<AuthProps> = ({ onLoginSuccess }) => {
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             required={!isLogin}
-                            className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-black/20 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-forest-500/50"
+                            className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-black/20 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500/50"
                         />
                     </div>
                 )}
@@ -85,7 +85,7 @@ const Auth: React.FC<AuthProps> = ({ onLoginSuccess }) => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
-                        className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-black/20 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-forest-500/50"
+                        className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-black/20 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500/50"
                     />
                 </div>
 
@@ -97,14 +97,14 @@ const Auth: React.FC<AuthProps> = ({ onLoginSuccess }) => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
-                        className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-black/20 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-forest-500/50"
+                        className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-black/20 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500/50"
                     />
                 </div>
 
                 <button 
                     type="submit" 
                     disabled={loading}
-                    className="w-full bg-forest-600 hover:bg-forest-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-forest-500/20 transition-all active:scale-95 flex items-center justify-center gap-2"
+                    className="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-brand-500/20 transition-all active:scale-95 flex items-center justify-center gap-2"
                 >
                     {loading ? <Loader className="animate-spin" size={20} /> : (
                         <>
@@ -120,7 +120,7 @@ const Auth: React.FC<AuthProps> = ({ onLoginSuccess }) => {
                     {isLogin ? "Don't have an account? " : "Already have an account? "}
                     <button 
                         onClick={() => { setIsLogin(!isLogin); setError(''); }}
-                        className="text-forest-600 dark:text-forest-400 font-bold hover:underline"
+                        className="text-brand-600 dark:text-brand-400 font-bold hover:underline"
                     >
                         {isLogin ? 'Sign Up' : 'Log In'}
                     </button>

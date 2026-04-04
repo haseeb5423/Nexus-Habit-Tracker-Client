@@ -13,11 +13,11 @@ interface AnalyticsProps {
 }
 
 const HABIT_THEME_COLORS: Record<string, string> = {
-  pink: '#EC4899',
-  purple: '#A855F7',
-  blue: '#3B82F6',
-  green: '#10B981',
-  orange: '#F97316',
+  pink: '#E11D48',
+  purple: '#65A30D',
+  amber: '#D97706',
+  blue: '#2563EB',
+  green: '#84cc16',
 };
 
 const getHabitColor = (theme: string) => HABIT_THEME_COLORS[theme] || '#10B981';
@@ -26,15 +26,15 @@ const CustomWeeklyTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
     return (
-      <div className="bg-forest-900/95 backdrop-blur border border-white/10 p-4 rounded-xl shadow-xl min-w-[180px] z-50">
+      <div className="bg-slate-900 border border-white/10 p-4 rounded-xl shadow-xl min-w-[180px] z-50">
         <p className="font-bold text-white mb-3 text-sm border-b border-white/10 pb-2">{label}</p>
         <div className="flex items-center justify-between mb-2">
-           <span className="text-xs text-forest-200">Total Completed:</span>
-           <span className="text-forest-300 font-bold text-sm">{data.completed}</span>
+           <span className="text-xs text-slate-400">Total Completed:</span>
+           <span className="text-white font-bold text-sm">{data.completed}</span>
         </div>
         {data.habitDetails && data.habitDetails.length > 0 && (
            <div className="mt-2 pt-2 border-t border-white/5">
-              <p className="text-[10px] text-forest-200 uppercase font-bold tracking-wider mb-2">Habits</p>
+              <p className="text-[10px] text-slate-400 uppercase font-bold tracking-wider mb-2">Habits</p>
               <ul className="space-y-1.5">
                 {data.habitDetails.map((h: any, index: number) => (
                   <li key={index} className="text-xs text-white flex items-start gap-2">
@@ -158,9 +158,9 @@ const YearlyHeatmap: React.FC<{ habits: Habit[], isExport?: boolean }> = ({ habi
                                                 "rounded-[1px] transition-all",
                                                 !isExport && (
                                                     day.count === 0 ? "bg-slate-100 dark:bg-white/5" :
-                                                    day.count <= 2 ? "bg-forest-200 dark:bg-forest-900" :
-                                                    day.count <= 4 ? "bg-forest-400 dark:bg-forest-700" :
-                                                    "bg-forest-600 dark:bg-forest-500"
+                                                    day.count <= 2 ? "bg-brand-200 dark:bg-brand-900" :
+                                                    day.count <= 4 ? "bg-brand-400 dark:bg-brand-700" :
+                                                    "bg-brand-600 dark:bg-brand-500"
                                                 )
                                             )}
                                             title={`${day.iso}: ${day.count} completions`}
@@ -250,24 +250,24 @@ const Analytics: React.FC<AnalyticsProps> = ({ habits }) => {
     <div className="space-y-6 animate-fade-in pb-10">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <div>
-          <h2 className="text-3xl font-bold text-forest-900 dark:text-white tracking-tight">Analytics</h2>
-          <p className="text-slate-500 dark:text-forest-dark-muted text-sm">Quantifying your behavioral patterns</p>
+          <h2 className="text-3xl font-bold text-brand-900 dark:text-white tracking-tight">Analytics</h2>
+          <p className="text-slate-500 dark:text-brand-dark-muted text-sm">Quantifying your behavioral patterns</p>
         </div>
-        <button onClick={() => setShowExportModal(true)} className="flex items-center gap-2 bg-forest-600 text-white px-6 py-3 rounded-xl hover:bg-forest-700 transition-all shadow-lg active:scale-95 font-bold">
+        <button onClick={() => setShowExportModal(true)} className="flex items-center gap-2 bg-brand-600 text-white px-6 py-3 rounded-xl hover:bg-brand-700 transition-all shadow-lg active:scale-95 font-bold">
           <Download size={20} /> Generate Report
         </button>
       </div>
 
-      <div className="bg-white/80 dark:bg-forest-dark-surface p-6 rounded-2xl border border-slate-200 dark:border-white/10 shadow-lg">
-          <h3 className="text-lg font-bold text-forest-900 dark:text-white mb-6 flex items-center gap-2">
-            <Calendar size={18} className="text-forest-500" /> Consistency Heatmap
+      <div className="bg-white/80 dark:bg-brand-dark-surface p-6 rounded-2xl border border-slate-200 dark:border-white/10 shadow-lg">
+          <h3 className="text-lg font-bold text-brand-900 dark:text-white mb-6 flex items-center gap-2">
+            <Calendar size={18} className="text-brand-500" /> Consistency Heatmap
           </h3>
           <YearlyHeatmap habits={habits} />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white/80 dark:bg-forest-dark-surface p-6 rounded-2xl border border-slate-200 dark:border-white/10 shadow-lg h-96">
-          <h3 className="text-lg font-bold text-forest-900 dark:text-white mb-6">Weekly Velocity</h3>
+        <div className="bg-white/80 dark:bg-brand-dark-surface p-6 rounded-2xl border border-slate-200 dark:border-white/10 shadow-lg h-96">
+          <h3 className="text-lg font-bold text-brand-900 dark:text-white mb-6">Weekly Velocity</h3>
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={weeklyData}>
@@ -275,21 +275,21 @@ const Analytics: React.FC<AnalyticsProps> = ({ habits }) => {
                 <XAxis dataKey="date" tick={{fill: '#94a3b8', fontSize: 11}} axisLine={false} tickLine={false} />
                 <YAxis tick={{fill: '#94a3b8', fontSize: 11}} axisLine={false} tickLine={false} allowDecimals={false} />
                 <Tooltip content={<CustomWeeklyTooltip />} cursor={{fill: 'rgba(0,0,0,0.05)'}} />
-                <Bar dataKey="completed" fill="#10b981" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="completed" fill="#84cc16" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
         </div>
 
-        <div className="bg-white/80 dark:bg-forest-dark-surface p-6 rounded-2xl border border-slate-200 dark:border-white/10 shadow-lg h-96">
-          <h3 className="text-lg font-bold text-forest-900 dark:text-white mb-6">Retention Rates</h3>
+        <div className="bg-white/80 dark:bg-brand-dark-surface p-6 rounded-2xl border border-slate-200 dark:border-white/10 shadow-lg h-96">
+          <h3 className="text-lg font-bold text-brand-900 dark:text-white mb-6">Retention Rates</h3>
            <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart layout="vertical" data={habits.map(h => ({ name: h.title, rate: calculateStreak(h).completionRate }))}>
                  <XAxis type="number" domain={[0, 100]} hide />
                  <YAxis dataKey="name" type="category" width={100} tick={{fill: '#94a3b8', fontSize: 11}} axisLine={false} tickLine={false} />
-                 <Tooltip cursor={{fill: 'transparent'}} contentStyle={{ backgroundColor: '#0D1B0D', borderRadius: '8px', color: '#fff', border: 'none' }} />
-                 <Bar dataKey="rate" fill="#10B981" radius={[0, 4, 4, 0]} barSize={14} />
+                 <Tooltip cursor={{fill: 'transparent'}} contentStyle={{ backgroundColor: '#0f172a', borderRadius: '8px', color: '#fff', border: 'none' }} />
+                 <Bar dataKey="rate" fill="#84cc16" radius={[0, 4, 4, 0]} barSize={14} />
               </BarChart>
             </ResponsiveContainer>
            </div>
@@ -298,20 +298,20 @@ const Analytics: React.FC<AnalyticsProps> = ({ habits }) => {
 
       {showExportModal && (
         <div className="fixed inset-0 z-[150] bg-zinc-950/95 backdrop-blur-md flex items-center justify-center p-0 sm:p-4 overflow-hidden">
-             <div className="bg-white dark:bg-forest-dark-surface w-full max-w-7xl h-full sm:h-[95vh] rounded-none sm:rounded-[2rem] shadow-2xl flex flex-col lg:flex-row overflow-hidden border border-white/5">
+             <div className="bg-white dark:bg-brand-dark-surface w-full max-w-7xl h-full sm:h-[95vh] rounded-none sm:rounded-[2rem] shadow-2xl flex flex-col lg:flex-row overflow-hidden border border-white/5">
                 
                 <div className="w-full lg:w-80 bg-zinc-50 dark:bg-black p-6 md:p-8 flex flex-row lg:flex-col items-center lg:items-stretch gap-4 lg:gap-8 shrink-0 border-b lg:border-b-0 lg:border-r border-zinc-200 dark:border-white/10">
                     <div className="flex-1 lg:flex-none flex items-center lg:items-start justify-between">
                         <div className="flex items-center gap-3">
-                            <Activity className="text-forest-600" />
+                            <Activity className="text-brand-600" />
                             <h3 className="font-black text-lg lg:text-xl tracking-tight dark:text-white uppercase">Nexus Audit</h3>
                         </div>
                         <button onClick={() => setShowExportModal(false)} className="lg:hidden p-2 text-zinc-400 hover:text-zinc-950"><X /></button>
                     </div>
                     
                     <div className="hidden lg:block space-y-4">
-                        <div className="p-4 rounded-2xl bg-forest-500/5 border border-forest-500/10">
-                            <p className="text-[10px] font-black text-forest-600 uppercase tracking-widest mb-2 flex items-center gap-2">
+                        <div className="p-4 rounded-2xl bg-brand-500/5 border border-brand-500/10">
+                            <p className="text-[10px] font-black text-brand-600 uppercase tracking-widest mb-2 flex items-center gap-2">
                                 <ShieldCheck size={12} /> High Fidelity Master
                             </p>
                             <p className="text-[11px] text-zinc-500 dark:text-zinc-400 leading-relaxed font-medium">
@@ -324,7 +324,7 @@ const Analytics: React.FC<AnalyticsProps> = ({ habits }) => {
                         <button 
                             onClick={handleDownloadPDF} 
                             disabled={isExporting} 
-                            className="px-6 lg:w-full py-3 lg:py-4 rounded-xl lg:rounded-2xl bg-forest-600 hover:bg-forest-700 text-white font-black shadow-xl flex items-center justify-center gap-3 transition-all active:scale-95 disabled:opacity-50 text-sm"
+                            className="px-6 lg:w-full py-3 lg:py-4 rounded-xl lg:rounded-2xl bg-brand-600 hover:bg-brand-700 text-white font-black shadow-xl flex items-center justify-center gap-3 transition-all active:scale-95 disabled:opacity-50 text-sm"
                         >
                             {isExporting ? <span className="animate-pulse">Building...</span> : <><Download size={18} className="hidden sm:inline" /> Export PDF</>}
                         </button>

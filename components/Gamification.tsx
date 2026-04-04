@@ -26,8 +26,8 @@ const Gamification: React.FC<GamificationProps> = ({ habits }) => {
       name: 'Sprout',
       desc: 'Reach a 3-day streak.',
       icon: Zap,
-      color: 'text-forest-400',
-      glow: 'shadow-forest-400/50',
+      color: 'text-teal-500',
+      glow: 'shadow-teal-500/50',
       achieved: habits.some(h => calculateStreak(h).current >= 3)
     },
     {
@@ -35,8 +35,8 @@ const Gamification: React.FC<GamificationProps> = ({ habits }) => {
       name: 'Sapling',
       desc: 'Reach a 7-day streak.',
       icon: Shield,
-      color: 'text-forest-600',
-      glow: 'shadow-forest-600/50',
+      color: 'text-blue-500',
+      glow: 'shadow-blue-500/50',
       achieved: habits.some(h => calculateStreak(h).current >= 7)
     },
     {
@@ -44,17 +44,17 @@ const Gamification: React.FC<GamificationProps> = ({ habits }) => {
       name: 'Mighty Oak',
       desc: 'Reach a 30-day streak.',
       icon: Crown,
-      color: 'text-forest-800',
-      glow: 'shadow-forest-800/50',
+      color: 'text-brand-600',
+      glow: 'shadow-brand-600/50',
       achieved: habits.some(h => calculateStreak(h).current >= 30)
     },
     {
       id: 'master',
-      name: 'Forest Guardian',
+      name: 'Guardian',
       desc: '3 habits with 7+ day streaks.',
       icon: Medal,
-      color: 'text-emerald-600',
-      glow: 'shadow-emerald-600/50',
+      color: 'text-rose-600',
+      glow: 'shadow-rose-600/50',
       achieved: habits.filter(h => calculateStreak(h).current >= 7).length >= 3
     }
   ];
@@ -65,19 +65,19 @@ const Gamification: React.FC<GamificationProps> = ({ habits }) => {
   return (
     <div className="space-y-8 pb-10">
       <div className="text-center mb-8 animate-slide-up">
-        <h2 className="text-3xl font-bold text-forest-900 dark:text-white mb-2 tracking-tight">Achievements</h2>
-        <p className="text-forest-light-muted dark:text-forest-dark-muted">Unlock badges by growing your habits.</p>
+        <h2 className="text-3xl font-bold text-brand-900 dark:text-white mb-2 tracking-tight">Achievements</h2>
+        <p className="text-brand-light-muted dark:text-brand-dark-muted">Unlock badges by growing your habits.</p>
       </div>
 
       {/* Progress Bar */}
-      <div className="bg-white/80 dark:bg-forest-dark-surface backdrop-blur-xl p-5 md:p-8 rounded-2xl shadow-lg border border-slate-200 dark:border-white/10 mb-8 animate-slide-up delay-100 opacity-0 fill-mode-forwards">
+      <div className="bg-white/80 dark:bg-brand-dark-surface backdrop-blur-xl p-5 md:p-8 rounded-2xl shadow-lg border border-slate-200 dark:border-white/10 mb-8 animate-slide-up delay-100 opacity-0 fill-mode-forwards">
         <div className="flex justify-between mb-4 items-end">
-            <span className="font-bold text-forest-900 dark:text-white text-base md:text-lg">Level Progress</span>
-            <span className="text-forest-600 dark:text-forest-300 font-bold font-mono text-sm md:text-base">{achievedCount} / {badges.length}</span>
+            <span className="font-bold text-brand-900 dark:text-white text-base md:text-lg">Level Progress</span>
+            <span className="text-brand-600 dark:text-brand-300 font-bold font-mono text-sm md:text-base">{achievedCount} / {badges.length}</span>
         </div>
         <div className="w-full bg-slate-200 dark:bg-black/40 h-4 md:h-6 rounded-full overflow-hidden border border-slate-200 dark:border-white/5 p-1">
             <div 
-                className="bg-gradient-to-r from-forest-600 to-forest-400 h-full rounded-full transition-all duration-1000 ease-out shadow-[0_0_15px_rgba(76,175,80,0.6)]" 
+                className="bg-brand-600 h-full rounded-full transition-all duration-1000 ease-out shadow-[0_0_15px_rgba(99,102,241,0.6)]" 
                 style={{ width: `${progress}%` }}
             />
         </div>
@@ -96,14 +96,14 @@ const Gamification: React.FC<GamificationProps> = ({ habits }) => {
                 "flex flex-row md:flex-col items-center gap-4 md:gap-4",
                 "text-left md:text-center animate-scale-in opacity-0 fill-mode-forwards hover:scale-105 hover:shadow-xl",
                 badge.achieved 
-                  ? "bg-white/90 dark:bg-forest-dark-surface border-forest-200 dark:border-white/20" 
-                  : "bg-slate-100 dark:bg-forest-dark-surface/50 border-slate-100 dark:border-white/5 opacity-60 grayscale-[0.5]"
+                  ? "bg-white/90 dark:bg-brand-dark-surface border-brand-200 dark:border-white/20" 
+                  : "bg-slate-100 dark:bg-brand-dark-surface/50 border-slate-100 dark:border-white/5 opacity-60 grayscale-[0.5]"
               )}
               style={{ animationDelay: `${index * 100}ms` }}
             >
               {/* Shiny reflection for achieved badges */}
               {badge.achieved && (
-                   <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shimmer" />
+                   <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-white/20 opacity-20 group-hover:animate-shimmer" />
               )}
 
               {/* Glow effect for achieved */}
@@ -119,13 +119,13 @@ const Gamification: React.FC<GamificationProps> = ({ habits }) => {
                 {badge.achieved ? (
                      <Icon className={clsx(badge.color, "drop-shadow-sm w-6 h-6 md:w-12 md:h-12 animate-float")} />
                 ) : (
-                    <Lock className="text-slate-400 dark:text-forest-dark-muted w-6 h-6 md:w-12 md:h-12" />
+                    <Lock className="text-slate-400 dark:text-brand-dark-muted w-6 h-6 md:w-12 md:h-12" />
                 )}
               </div>
               
               <div className="relative z-10 flex-1">
-                <h3 className={clsx("font-bold mb-1", "text-base md:text-xl", badge.achieved ? "text-forest-900 dark:text-white" : "text-slate-400 dark:text-forest-dark-muted")}>{badge.name}</h3>
-                <p className="text-xs md:text-sm text-forest-light-muted dark:text-forest-dark-muted">{badge.desc}</p>
+                <h3 className={clsx("font-bold mb-1", "text-base md:text-xl", badge.achieved ? "text-brand-900 dark:text-white" : "text-slate-400 dark:text-brand-dark-muted")}>{badge.name}</h3>
+                <p className="text-xs md:text-sm text-brand-light-muted dark:text-brand-dark-muted">{badge.desc}</p>
               </div>
             </div>
           );

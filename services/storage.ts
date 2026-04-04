@@ -82,8 +82,7 @@ export const api = {
     },
 
     logout() {
-        localStorage.removeItem(TOKEN_KEY);
-        localStorage.removeItem(USER_INFO_KEY);
+        localStorage.clear();
     },
 
     isLoggedIn() {
